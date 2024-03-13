@@ -32,4 +32,13 @@ public class Funcoes {
         //TODO write your implementation code here:
         return numero1 + numero2;
     }
+
+    /**
+     * Operação de Web service
+     */
+    @WebMethod(operationName = "Subtracao")
+    public Double Subtracao(@WebParam(name = "numero1") double numero1, @WebParam(name = "numero2") double numero2) {
+        //TODO write your implementation code here:
+        return numero1 - numero2;
+    }
 }
