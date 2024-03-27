@@ -42,7 +42,9 @@ function calculaTemp(type, temperature){
 app.post('/', (req, res) => {
     let qtd = req.query.qtd;
     let notas = req.body.nota;
-    res.send(`Quantidade: ${qtd} | notas: ${notas}`)
+     abaixoDaMedia = notas.filter( => (nota < 60));
+    res.send(`Quantidade: ${qtd} | notas: ${notas}
+            ${abaixoDaMedia}`)
   })
 
 /*app.post('/media', (req, res) => {
