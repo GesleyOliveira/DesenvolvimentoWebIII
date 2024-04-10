@@ -1,0 +1,14 @@
+{
+  "name": "exerciciosfixacao",
+  "version": "1.0.0",
+  "description": "Exercicios de Fixação",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gesley Rosa",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
