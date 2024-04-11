@@ -29,9 +29,35 @@ app.post('/curso', (req, res) => {
 
 // Put – Alterar os dados de um aluno através do RA
 app.put('/', (req, res) => {
-  const index = alunos.findIndex(x => x.ra == req.query.ra);
-  alunos[index] = {nome: req.body.nome, turma: req.body.turma, habilidades: req.body.habilidades};
-  res.send(JSON.stringify(alunos));
+    const index = alunos.findIndex(x => x.ra == req.query.ra);
+    if(req.body.nome != null){
+        alunos[index].nome =  req.body.nome
+    }
+    if(req.body.turma != null){
+        alunos[index].turma =  req.body.turma
+    }
+    if(req.body.habilidades != null){
+        alunos[index].habilidades = req.body.habilidades
+    }
+   
+    res.send(JSON.stringify(alunos[index]))
+})
+
+// Put – Alterar o curso do aluno 
+
+app.put('/curso', (req, res) => {
+    const index = alunos.findIndex(x => x.ra == req.query.ra);
+    const index2 = alunos[index].habilidades.findIndex(x => x.habilidade == req.query.habilidade)
+   
+    alunos[index].habilidades[index2] = req.body.habilidade
+ 
+    res.send(JSON.stringify(alunos[index]))
+})
+
+
+ 
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
 })
 
 
