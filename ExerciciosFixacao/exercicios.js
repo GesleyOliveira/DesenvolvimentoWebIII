@@ -1,4 +1,5 @@
-const express = require('express')
+import express from "express";
+
 const app = express()
 const port = 3000
 app.use(express.json())
@@ -46,13 +47,19 @@ app.put('/', (req, res) => {
 // Put – Alterar o curso do aluno 
 
 app.put('/curso', (req, res) => {
-    const index = alunos.findIndex(x => x.ra == req.query.ra);
-    const index2 = alunos[index].habilidades.findIndex(x => x.habilidade == req.query.habilidade)
-   
-    alunos[index].habilidades[index2] = req.body.habilidade
- 
-    res.send(JSON.stringify(alunos[index]))
-})
+  var index = alunos.findIndex(x => x.ra == req.query.ra);
+  var habiliIndex = alunos[index].habilidades.findIndex(x => x == req.query.hab);
+
+  console.log(req.query.hab);
+
+  if (habiliIndex !== -1) { 
+      alunos[index].habilidades[habiliIndex].hab = req.body.habilidades; 
+      res.send(JSON.stringify(alunos[index]));
+  } else {
+      res.status(404).send("Habilidade não encontrada");
+  }
+});
+
 
 
  
@@ -70,6 +77,3 @@ app.delete('/', (req, res) => {
 })
 
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
