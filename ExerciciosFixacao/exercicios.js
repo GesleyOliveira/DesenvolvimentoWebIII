@@ -13,13 +13,13 @@ var alunos = [
     }
 ]
 
-//Post – Adicionar um aluno na lista
+// Post – Adicionar um aluno na lista
 app.post('/', (req, res) => {
   alunos.push(req.body)
   res.send(`Post ${JSON.stringify(alunos)}`)
 })
 
-//Post – Adicionar um curso para o aluno 
+// Post – Adicionar um curso para o aluno 
 
 app.post('/curso', (req, res) => {
   const index = alunos.findIndex(x => x.ra == req.query.ra);
@@ -60,9 +60,7 @@ app.put('/curso', (req, res) => {
   }
 });
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+// Delete – Remover um aluno da lista
 
 app.delete('/', (req, res) => {
     const index = alunos.findIndex(x => x.ra == req.query.ra);
@@ -70,6 +68,8 @@ app.delete('/', (req, res) => {
 
     res.send(JSON.stringify(alunos))
 })
+
+// Delete – Remover o curso do aluno
 
 app.delete('/curso', (req, res) => {
     const index = alunos.findIndex(x => x.ra == req.query.ra);
@@ -80,10 +80,14 @@ app.delete('/curso', (req, res) => {
     res.send(JSON.stringify(alunos))
 })
 
+// Get – Listar todos os alunos (RA, Nome, Turma) 
+
 app.get('/', (req, res) => {
 
     res.send(JSON.stringify(alunos))
 })
+
+// Get – Listar um aluno através do RA informado (Nome, Turma, Cursos) 
 
 app.get('/aluno', (req, res) => {
     const index = alunos.findIndex(x => x.ra == req.query.ra);
