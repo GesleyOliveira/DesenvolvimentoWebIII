@@ -60,20 +60,41 @@ app.put('/curso', (req, res) => {
   }
 });
 
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+})
 
+app.delete('/', (req, res) => {
+    const index = alunos.findIndex(x => x.ra == req.query.ra);
+    alunos.splice(index, 1)
 
- 
+    res.send(JSON.stringify(alunos))
+})
+
+app.delete('/curso', (req, res) => {
+    const index = alunos.findIndex(x => x.ra == req.query.ra);
+    const index2 = alunos[index].habilidades.findIndex(x => x == req.query.habilidades)
+
+    alunos[index].habilidades.splice(index2, 1)
+
+    res.send(JSON.stringify(alunos))
+})
+
+app.get('/', (req, res) => {
+
+    res.send(JSON.stringify(alunos))
+})
+
+app.get('/aluno', (req, res) => {
+    const index = alunos.findIndex(x => x.ra == req.query.ra);
+
+    res.send(JSON.stringify(alunos[index]))
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
 
 
-
-
-app.delete('/', (req, res) => {
-  const index = veiculos.findIndex(x => x.id == req.query.id);
-  veiculos.splice(index, 1);
-  res.send(JSON.stringify(veiculos))
-})
 
 
