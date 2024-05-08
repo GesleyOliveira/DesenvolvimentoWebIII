@@ -1,4 +1,4 @@
-var User = require('../models/usuarioModel')
+var User = require('../models/userModel')
 
 exports.getUser = async function (req, res) {
     try {
@@ -12,8 +12,8 @@ exports.getUser = async function (req, res) {
 exports.create = function(req, res){
     let user = new User(
         {
-        name: req.body.name,
-        age: req.body.age
+        name: req.query.name,
+        age: req.query.age
         }
     )
     user.save()

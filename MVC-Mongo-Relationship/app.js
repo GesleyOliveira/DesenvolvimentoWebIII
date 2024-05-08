@@ -2,12 +2,15 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 
-const userRoute = require('./src/routes/usuarioRoute')
+const userRoute = require('./src/routes/userRoute')
+const projectRoute = require('./src/routes/projectRoute')
 app.use(userRoute)
+app.use(projectRoute)
 
 //Configurando a conexão
 const mongoose = require('mongoose')
-let url = 'mongodb+srv://GesleyRosa:Gelao*123@fatec.8bwsw58.mongodb.net/?retryWrites=true&w=majority&appName=Fatec'
+let url = 'mongodb://127.0.0.1:27017/fatec'
+//let mongoDb = 'mongodb+srv://GesleyRosa:Gelao*123@fatec.8bwsw58.mongodb.net/?retryWrites=true&w=majority&appName=Fatec'
 let mongoDb = process.env.MONGODB_URI || url
 mongoose.connect(mongoDb)
 mongoose.Promise = global.Promise
