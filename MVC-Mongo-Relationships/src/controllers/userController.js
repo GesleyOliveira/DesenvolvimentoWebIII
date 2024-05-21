@@ -51,7 +51,7 @@ exports.update = async function (req, res) {
         #swagger.description = 'Atualiza o usuário pelo id'
     */
     try {
-        const result = await User.findByIdAndUpdate(req.params.id, req.body, { new : true })
+        const result = await User.findByIdAndUpdate(req.params.id, req.body, { new : true });
         res.status(200).json(result)
     } catch (err) {
         res.status(500).send({ message: `${err.message} - falha ao atualizar o projeto.` })
